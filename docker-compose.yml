@@ -13,6 +13,8 @@ services:
     environment:
       - JAVA_OPTS=-Duser.timezone=Asia/Tokyo -Dfile.encoding=UTF-8
       - JENKINS_OPTS=--prefix=/jenkins
+    networks:
+      - jgnet
 
   gitbucket:
     <<: *common-settings
@@ -22,6 +24,8 @@ services:
       GITBUCKET_PREFIX: /gitbucket
     volumes:
       - ./gitbucket_data:/gitbucket
+    networks:
+      - jgnet
 
   proxy:
     <<: *common-settings
@@ -34,3 +38,9 @@ services:
       - jenkins:jenkins
     ports:
       - "80:80"
+    networks:
+      - jgnet
+
+networks:
+  jgnet:
+    driver: bridge
