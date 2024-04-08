@@ -10,6 +10,8 @@ services:
     image: jenkins/jenkins:lts-jdk21
     volumes:
       - ./jenkins_home:/var/jenkins_home
+    ports:
+      - "50000:50000"
     environment:
       - JAVA_OPTS=-Duser.timezone=Asia/Tokyo -Dfile.encoding=UTF-8
       - JENKINS_OPTS=--prefix=/jenkins
